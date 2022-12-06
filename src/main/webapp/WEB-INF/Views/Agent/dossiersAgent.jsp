@@ -34,37 +34,44 @@
                 <button class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">
                     New Report
                 </button>
-                <button class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">
-                    Create
-                </button>
+                <a href="AddDossier">
+                    <button  class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">
+                        Create
+                    </button>
+                </a>
+
             </div>
         </div>
     </div>
     <div>
         <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                <table class="min-w-full leading-normal">
+                <table class="min-w-full text-center leading-normal">
                     <thead>
                     <tr>
-                        <th
-                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-600 uppercase tracking-wider">
                             Name
                         </th>
-                        <th
-                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            products
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            specialities
                         </th>
-                        <th
-                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            Created at
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            medications
                         </th>
-                        <th
-                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            QRT
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            analyses
                         </th>
-                        <th
-                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            radios
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            Repayment
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-600 uppercase tracking-wider">
                             Status
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            Action
                         </th>
                     </tr>
                     </thead>
@@ -89,22 +96,39 @@
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">
-                                    ${tempCustomer.specialities.size()}
+                                    <c:if test="${tempCustomer.specialities.size() == 0}"> - </c:if>
+                                    <c:forEach  items="${tempCustomer.specialities}" var="speciality">
+                                        ${speciality.name}<br>
+                                    </c:forEach>
                                 </p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">
-                                    ${tempCustomer.medications.size()}
+                                    <c:if test="${tempCustomer.medications.size() == 0}"> - </c:if>
+                                    <c:forEach  items="${tempCustomer.medications}" var="medication">
+                                        ${medication.name}<br>
+                                    </c:forEach>
                                 </p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">
-                                    ${tempCustomer.analyses.size()}
+                                    <c:if test="${tempCustomer.analyses.size() == 0}"> - </c:if>
+                                    <c:forEach  items="${tempCustomer.analyses}" var="analyse">
+                                        ${analyse.name}<br>
+                                    </c:forEach>
+                                </p>
+                            </td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 text-center whitespace-no-wrap">
+                                    <c:if test="${tempCustomer.radios.size() == 0}"> - </c:if>
+                                    <c:forEach  items="${tempCustomer.radios}" var="radio">
+                                        ${radio.name}<br>
+                                    </c:forEach>
                                 </p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">
-                                    ${tempCustomer.radios.size()}
+                                    ${tempCustomer.repayment}
                                 </p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -117,6 +141,12 @@
                                     </span>
                                 </span>
                             </td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">
+                                    Botonat
+                                </p>
+                            </td>
+
 
                         </tr>
                         </c:forEach>

@@ -132,4 +132,18 @@ public class DossierEntity {
         this.patientByPatientId = patientByPatientId;
     }
 
+    @Override
+    public String toString() {
+        return "DossierEntity{" +
+                "id=" + id +
+                ", patientId=" + patientId +
+                ", status='" + status + '\'' +
+                ", repayment=" + repayment +
+                ", patientByPatientId=" + patientByPatientId +
+                ", medications=" + medications +
+                ", analyses=" + analyses +
+                ", specialities=" + specialities +
+                ", radios=" + radios +
+                '}';
+    }
 }

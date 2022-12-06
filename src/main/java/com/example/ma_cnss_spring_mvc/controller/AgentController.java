@@ -37,6 +37,7 @@ public class AgentController {
     @PostMapping("/login")
     public String loginAgent(@ModelAttribute("agent") AgentEntity agent) {
         AgentEntity agentEntity = agentDAO.findByEmail(agent.getEmail());
+        agentDAO.
         if( agentEntity.getPassword().equals((agent.getPassword()))){
             return "test";
         }else{
@@ -47,11 +48,17 @@ public class AgentController {
     @GetMapping ("dossiers")
     public String dossier(Model model){
         List <DossierEntity> dossiers = dossierDAO.findAll();
-        
+        System.out.println(dossiers);
         model.addAttribute("dossiers", dossiers);
 
         return "Agent/dossiersAgent";
     }
+
+    @GetMapping("/AddDossier")
+    public String AddDossier() {
+        return "Agent/AddDossierAgent";
+    }
+
 //    @GetMapping("/list")
 //    public String listCustomers(Model theModel) {
 //        List < Customer > theCustomers = customerService.getCustomers();
