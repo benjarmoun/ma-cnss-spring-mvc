@@ -23,7 +23,7 @@ public class PatientEntity {
     @Basic
     @Column(name = "password")
     private String password;
-    @OneToMany(mappedBy = "patientByPatientId")
+    @OneToMany(mappedBy = "patientByPatientId", fetch = FetchType.EAGER)
     private Collection<DossierEntity> dossiersById;
 
     public int getId() {
