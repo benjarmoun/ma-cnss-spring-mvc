@@ -27,7 +27,7 @@ public class DossierEntity {
 //    @OneToMany(mappedBy = "dossierByDossierId")
 //    private Collection<DossierAnalysisEntity> dossierAnalysesById;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "dossier_medication",
             joinColumns = {@JoinColumn(name = "dossier_id")},
@@ -35,7 +35,7 @@ public class DossierEntity {
     )
     private List<MedicationEntity> medications;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "dossier_analysis",
             joinColumns = {@JoinColumn(name = "dossier_id")},
@@ -43,7 +43,7 @@ public class DossierEntity {
     )
     private List<AnalysisEntity> analyses;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "dossier_specialty",
             joinColumns = {@JoinColumn(name = "dossier_id")},
@@ -52,13 +52,16 @@ public class DossierEntity {
     private List<SpecialityEntity> specialities;
 
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "dossier_radio",
             joinColumns = {@JoinColumn(name = "dossier_id")},
             inverseJoinColumns = {@JoinColumn(name = "radio_id")}
     )
     private List<RadioEntity> radios;
+
+    public DossierEntity() {
+    }
 
     public int getId() {
         return id;
@@ -145,5 +148,18 @@ public class DossierEntity {
                 ", specialities=" + specialities +
                 ", radios=" + radios +
                 '}';
+    }
+
+    public DossierEntity(int patientId, String status, double repayment, List<SpecialityEntity> specialities) {
+        this.patientId = patientId;
+        this.status = status;
+        this.repayment = repayment;
+        this.specialities = specialities;
+    }
+
+    public DossierEntity(int patientId, String status, double repayment) {
+        this.patientId = patientId;
+        this.status = status;
+        this.repayment = repayment;
     }
 }

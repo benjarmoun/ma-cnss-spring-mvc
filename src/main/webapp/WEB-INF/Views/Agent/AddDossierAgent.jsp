@@ -7,11 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib  prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="x-on" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Add Dossier</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
 <!-- component -->
@@ -19,55 +21,78 @@
     <h1 class="text-3xl font-bold text-white">Input designs</h1>
     <p class="mb-8 font-semibold text-gray-100">Created by Gezellligheid</p>
     <div class="w-full rounded-xl bg-white p-4 shadow-2xl shadow-white/40">
-        <div class="mb-4 flex flex-col">
-            <label for="clientmat" class="mb-2 font-semibold">Client Matricul</label>
-            <div class="relative">
-                <input type="text" id="clientmat" class="w-full rounded-lg border border-slate-200 px-2 py-1 pl-8 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" />
-            </div>
-        </div>
+        <form modelAttribute="dossier" action="AddDossier" method="post">
 
-        <div class="mb-4 grid grid-cols-2 gap-4">
-            <div class="flex flex-col">
-                <label for="text" class="mb-2 font-semibold">Text input</label>
-                <input type="text" id="text" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" />
-            </div>
-            <div class="flex flex-col">
-                <label for="text" class="mb-2 font-semibold">Speciality</label>
-                <select name="speciality" id="speciality" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40">
-                    <option value="speciality">speciality</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="mb-4 flex flex-col">
-            <label for="email" class="mb-2 font-semibold">Email address</label>
-            <div class="relative">
-                <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-2 top-2 h-5 w-5 text-slate-400" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M14.243 5.757a6 6 0 10-.986 9.284 1 1 0 111.087 1.678A8 8 0 1118 10a3 3 0 01-4.8 2.401A4 4 0 1114 10a1 1 0 102 0c0-1.537-.586-3.07-1.757-4.243zM12 10a2 2 0 10-4 0 2 2 0 004 0z" clip-rule="evenodd" />
-                </svg>
-                <input type="email" id="text" class="w-full rounded-lg border border-slate-200 px-2 py-1 pl-8 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" />
-            </div>
-        </div>
-        <div class="mb-4 flex flex-col">
-            <label for="age" class="mb-2 font-semibold">Number input</label>
-            <input type="number" id="age" class="w-full max-w-[200px] rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" />
-        </div>
-        <div class="flex">
-
-            <label for="privacy" class="mb-2 ">
-                <input type="checkbox" name="privcay" id="privacy" class="mr-2 peer w-0 h-0" />
-                <h1 class="font-semibold">I have read and agreed the privacy policy</h1>
-                <div class="w-6 h-6  items-center inline-block justify-center hover:border-blue-500 focus:ring transition-all focus:ring-blue-500/40 border border-slate-200 rounded-lg peer-checked:bg-blue-500 peer-checked:[&>svg]:block [&>svg]:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto text-white " viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
+            <div class="mb-4 flex flex-col">
+                <label for="patientId" class="mb-2 font-semibold">Client Matricul</label>
+                <div class="relative">
+                    <input type="text" id="patientId" path="patientId" name="patientId" class="w-full rounded-lg border border-slate-200 px-2 py-1 pl-8 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" />
                 </div>
-            </label>
+            </div>
 
-            <div class="flex items-center">
-                <div "peer"></div>
-        </div>
-    </div>
+            <div class="mb-4 grid grid-cols-2 gap-4">
+                <div class="flex flex-col" x-data="{count: 1}">
+                    <label for="speciality" class="mb-2 font-semibold">Speciality :</label>
+                    <template x-for="i in count">
+                        <select :name="'speciality'+i" id="speciality" class="w-full mb-2 max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40">
+                            <c:forEach items="${specialities}" var="spec">
+                                <option value="${spec.id}">${spec.name}</option>
+                            </c:forEach>
+                        </select>
+                    </template>
+                    <button type="button" x-on:click="count++" >
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <input type="text" :value="count" name="spec_number" hidden>
+                </div>
+                <div class="flex flex-col" x-data="{count: 0}">
+                    <label for="medication" class="mb-2 font-semibold">Medication :</label>
+                    <template x-for="i in count">
+                        <select :name="'medication'+i" id="medication" class="w-full mb-2 max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40">
+                            <c:forEach items="${medications}" var="med">
+                                <option value="${med.id}">${med.name}</option>
+                            </c:forEach>
+                        </select>
+                    </template>
+                    <button type="button" x-on:click="count++" >
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <input type="text" :value="count" name="med_number" hidden>
+                </div>
+            </div>
+            <div class="mb-4 grid grid-cols-2 gap-4">
+                <div class="flex flex-col" x-data="{count: 0}">
+                    <label for="radio" class="mb-2 font-semibold">Radio :</label>
+                    <template x-for="i in count">
+                        <select :name="'radio'+i" id="radio" class="w-full mb-2 max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40">
+                            <c:forEach items="${radios}" var="rad">
+                                <option value="${rad.id}">${rad.name}</option>
+                            </c:forEach>
+                        </select>
+                    </template>
+                    <button type="button" x-on:click="count++" >
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <input type="text" :value="count" name="rad_number" hidden>
+                </div>
+                <div class="flex flex-col" x-data="{count: 0}">
+                    <label for="analysis" class="mb-2 font-semibold">Analysis :</label>
+                    <template x-for="i in count">
+                        <select :name="'analysis'+i" id="analysis" class="w-full mb-2 max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40">
+                            <c:forEach items="${analysis}" var="analy">
+                                <option value="${analy.id}">${analy.name}</option>
+                            </c:forEach>
+                        </select>
+                    </template>
+                    <button type="button" x-on:click="count++" >
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <input type="text" :value="count" name="analy_number" hidden>
+                </div>
+            </div>
+
+            <button type="submit"> submit </button>
+        </form>
     </div>
 </main>
 </body>

@@ -82,11 +82,11 @@
 
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <div class="flex items-center">
-                                    <div class="flex-shrink-0 w-10 h-10">
+                                    <%--<div class="flex-shrink-0 w-10 h-10">
                                         <img class="w-full h-full rounded-full"
                                              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
                                              alt=""/>
-                                    </div>
+                                    </div>--%>
                                     <div class="ml-3">
                                         <p class="text-gray-900 whitespace-no-wrap">
                                             ${tempCustomer.patientByPatientId.username}
@@ -141,121 +141,128 @@
                                     </span>
                                 </span>
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                    Botonat
-                                </p>
+                            <td class=" px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <div class="flex">
+                                    <form action="confirm/${tempCustomer.id}" method="get">
+                                        <button type="submit">
+                                            <svg class="mx-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="bevel"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                        </button>
+                                    </form>
+                                    <form action="reject/${tempCustomer.id}" method="get">
+                                        <button type="submit">
+                                            <svg class="mx-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="bevel"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
-
-
                         </tr>
                         </c:forEach>
 
-                        <%--                    <tr>--%>
-<%--                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">--%>
-<%--                            <div class="flex items-center">--%>
-<%--                                <div class="flex-shrink-0 w-10 h-10">--%>
-<%--                                    <img class="w-full h-full rounded-full"--%>
-<%--                                         src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"--%>
-<%--                                         alt=""/>--%>
-<%--                                </div>--%>
-<%--                                <div class="ml-3">--%>
-<%--                                    <p class="text-gray-900 whitespace-no-wrap">--%>
-<%--                                        Blake Bowman--%>
-<%--                                    </p>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </td>--%>
-<%--                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">--%>
-<%--                            <p class="text-gray-900 whitespace-no-wrap">Editor</p>--%>
-<%--                        </td>--%>
-<%--                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">--%>
-<%--                            <p class="text-gray-900 whitespace-no-wrap">--%>
-<%--                                Jan 01, 2020--%>
-<%--                            </p>--%>
-<%--                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">--%>
-<%--                            <p class="text-gray-900 whitespace-no-wrap">--%>
-<%--                                77--%>
-<%--                            </p>--%>
-<%--                        </td>--%>
-<%--                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">--%>
-<%--									<span--%>
-<%--                                            class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">--%>
-<%--                                        <span aria-hidden--%>
-<%--                                              class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>--%>
-<%--									<span class="relative">Activo</span>--%>
-<%--									</span>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">--%>
-<%--                            <div class="flex items-center">--%>
-<%--                                <div class="flex-shrink-0 w-10 h-10">--%>
-<%--                                    <img class="w-full h-full rounded-full"--%>
-<%--                                         src="https://images.unsplash.com/photo-1540845511934-7721dd7adec3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"--%>
-<%--                                         alt=""/>--%>
-<%--                                </div>--%>
-<%--                                <div class="ml-3">--%>
-<%--                                    <p class="text-gray-900 whitespace-no-wrap">--%>
-<%--                                        Dana Moore--%>
-<%--                                    </p>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </td>--%>
-<%--                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">--%>
-<%--                            <p class="text-gray-900 whitespace-no-wrap">Editor</p>--%>
-<%--                        </td>--%>
-<%--                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">--%>
-<%--                            <p class="text-gray-900 whitespace-no-wrap">--%>
-<%--                                Jan 10, 2020--%>
-<%--                            </p>--%>
-<%--                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">--%>
-<%--                            <p class="text-gray-900 whitespace-no-wrap">--%>
-<%--                                64--%>
-<%--                            </p>--%>
-<%--                        </td>--%>
-<%--                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">--%>
-<%--									<span--%>
-<%--                                            class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">--%>
-<%--                                        <span aria-hidden--%>
-<%--                                              class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>--%>
-<%--									<span class="relative">Suspended</span>--%>
-<%--									</span>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td class="px-5 py-5 bg-white text-sm">--%>
-<%--                            <div class="flex items-center">--%>
-<%--                                <div class="flex-shrink-0 w-10 h-10">--%>
-<%--                                    <img class="w-full h-full rounded-full"--%>
-<%--                                         src="https://images.unsplash.com/photo-1522609925277-66fea332c575?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&h=160&w=160&q=80"--%>
-<%--                                         alt=""/>--%>
-<%--                                </div>--%>
-<%--                                <div class="ml-3">--%>
-<%--                                    <p class="text-gray-900 whitespace-no-wrap">--%>
-<%--                                        Alonzo Cox--%>
-<%--                                    </p>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </td>--%>
-<%--                        <td class="px-5 py-5 bg-white text-sm">--%>
-<%--                            <p class="text-gray-900 whitespace-no-wrap">Admin</p>--%>
-<%--                        </td>--%>
-<%--                        <td class="px-5 py-5 bg-white text-sm">--%>
-<%--                            <p class="text-gray-900 whitespace-no-wrap">Jan 18, 2020</p>--%>
-<%--                        </td>--%>
-<%--                        <td class="px-5 py-5 bg-white text-sm">--%>
-<%--                            <p class="text-gray-900 whitespace-no-wrap">70</p>--%>
-<%--                        </td>--%>
-<%--                        <td class="px-5 py-5 bg-white text-sm">--%>
-<%--									<span--%>
-<%--                                            class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">--%>
-<%--                                        <span aria-hidden--%>
-<%--                                              class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>--%>
-<%--									<span class="relative">Inactive</span>--%>
-<%--									</span>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
+                        <%--                    <tr>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 w-10 h-10">
+                                    <img class="w-full h-full rounded-full"
+                                         src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                                         alt=""/>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        Blake Bowman
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">Editor</p>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                Jan 01, 2020
+                            </p>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                77
+                            </p>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+									<span
+                                            class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        <span aria-hidden
+                                              class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+									<span class="relative">Activo</span>
+									</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 w-10 h-10">
+                                    <img class="w-full h-full rounded-full"
+                                         src="https://images.unsplash.com/photo-1540845511934-7721dd7adec3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                                         alt=""/>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        Dana Moore
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">Editor</p>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                Jan 10, 2020
+                            </p>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                64
+                            </p>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+									<span
+                                            class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
+                                        <span aria-hidden
+                                              class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
+									<span class="relative">Suspended</span>
+									</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-5 py-5 bg-white text-sm">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 w-10 h-10">
+                                    <img class="w-full h-full rounded-full"
+                                         src="https://images.unsplash.com/photo-1522609925277-66fea332c575?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&h=160&w=160&q=80"
+                                         alt=""/>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        Alonzo Cox
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-5 py-5 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">Admin</p>
+                        </td>
+                        <td class="px-5 py-5 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">Jan 18, 2020</p>
+                        </td>
+                        <td class="px-5 py-5 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">70</p>
+                        </td>
+                        <td class="px-5 py-5 bg-white text-sm">
+									<span
+                                            class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                        <span aria-hidden
+                                              class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+									<span class="relative">Inactive</span>
+									</span>
+                        </td>
+                    </tr>--%>
                     </tbody>
                 </table>
                 <div
