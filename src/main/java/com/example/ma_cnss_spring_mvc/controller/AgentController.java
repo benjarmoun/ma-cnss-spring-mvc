@@ -132,6 +132,17 @@ public class AgentController {
         return "redirect:/agent/dossiers";
     }
 
+    @GetMapping("/confirm/{id}")
+    public String ConfirmDossier(@PathVariable Integer id){
+        dossierDAO.UpdateDossierStatus("accepted",id);
+        return "redirect:/agent/dossiers";
+    }
+    @GetMapping("/reject/{id}")
+    public String RejectDossier(@PathVariable Integer id){
+        dossierDAO.UpdateDossierStatus("rejected",id);
+        return "redirect:/agent/dossiers";
+    }
+
     /*@GetMapping("/{name}")
     public String pri(@PathVariable String name) {
         ModelAndView mv = new ModelAndView();
